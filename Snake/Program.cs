@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Snake.Enams;
+using Snake.Models;
+using Snake.Models.Figures;
+using Snake.Models.Map;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +14,14 @@ namespace Snake
     {
         static void Main(string[] args)
         {
-            Console.WriteLine('#');
-            Console.SetCursorPosition(100, 100);
+            Map map = MapGenerator.Generate(MapType.Box, 12, 30);
+            map.Draw();
+            map.GenerateFood();
+
+
+
+
+
             Console.ReadKey();
         }
     }

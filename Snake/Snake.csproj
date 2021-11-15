@@ -43,7 +43,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Enams\LineType.cs" />
+    <Compile Include="Enams\MapType.cs" />
     <Compile Include="Enams\MoveDirection.cs" />
+    <Compile Include="Infrastructure\Figure.cs" />
+    <Compile Include="Infrastructure\IDrawable.cs" />
+    <Compile Include="Models\Figures\Line.cs" />
+    <Compile Include="Models\Map\FoodGenerator.cs" />
+    <Compile Include="Models\Map\Map.cs" />
+    <Compile Include="Models\Map\MapGenerator.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
