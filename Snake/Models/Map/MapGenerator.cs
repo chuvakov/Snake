@@ -1,17 +1,17 @@
-﻿using Snake.Enams;
-using Snake.Infrastructure;
-using Snake.Models.Figures;
+﻿using SnakeApp.Enams;
+using SnakeApp.Infrastructure;
+using SnakeApp.Models.Figures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Snake.Models.Map
+namespace SnakeApp.Models.Map
 {
-    public static class MapGenerator
+    public class MapGenerator : IMapGenerator
     {
-        public static Map Generate(MapType type, int height, int width)
+        public Map Generate(MapType type, int height, int width)
         {
             switch (type)
             {
@@ -23,13 +23,13 @@ namespace Snake.Models.Map
             }
         }
 
-        private static Map GenerateBox(int height, int width)
+        private Map GenerateBox(int height, int width)
         {   
-            var upWall = new Line(0, 0, width, '#', LineType.Horizontal);
-            var downWall = new Line(0, height, width, '#', LineType.Horizontal);
+            var upWall = new Line(0, 0, width, "#", LineType.Horizontal);
+            var downWall = new Line(0, height, width, "#", LineType.Horizontal);
 
-            var leftWall = new Line(0, 0, height, '#', LineType.Vertical);
-            var rightWall = new Line(width, 0, height, '#', LineType.Vertical);
+            var leftWall = new Line(0, 0, height, "#", LineType.Vertical);
+            var rightWall = new Line(width, 0, height, "#", LineType.Vertical);
 
             var walls = new List<Figure>() { upWall, downWall, leftWall, rightWall };
 

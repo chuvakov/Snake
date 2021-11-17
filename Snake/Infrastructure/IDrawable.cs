@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Snake.Infrastructure
+namespace SnakeApp.Infrastructure
 {
     public interface IDrawable
     {

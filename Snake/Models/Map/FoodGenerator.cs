@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SnakeApp.Infrastructure;
+using System;
 
-namespace Snake.Models.Map
+namespace SnakeApp.Models.Map
 {
-    public class FoodGenerator
+    public class FoodGenerator : IFoodGenerator
     {
         private readonly int _mapHeight;
         private readonly int _mapWidth;
 
-        private readonly char _symbol;
+        private readonly string _symbol;
         private readonly Random _random = new Random();
 
-        public FoodGenerator(int mapHeight, int mapWidth, char symbol)
+        public FoodGenerator(int mapHeight, int mapWidth, string symbol)
         {
             _mapHeight = mapHeight;
             _mapWidth = mapWidth;

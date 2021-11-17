@@ -1,21 +1,21 @@
-﻿using Snake.Enams;
-using Snake.Infrastructure;
+﻿using SnakeApp.Enams;
+using SnakeApp.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Snake.Models.Figures
+namespace SnakeApp.Models.Figures
 {
     public class Line : Figure 
     {
-        public Line(int x, int y, int length, char symbol, LineType type)
+        public Line(int x, int y, int length, string symbol, LineType type)
         {
             InitPoints(x, y, length, symbol, type);
         }
 
-        private void InitPoints(int x, int y, int length, char symbol, LineType type)
+        private void InitPoints(int x, int y, int length, string symbol, LineType type)
         {
             switch (type)
             {

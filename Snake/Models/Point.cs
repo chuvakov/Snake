@@ -1,27 +1,22 @@
-﻿using Snake.Enams;
-using Snake.Infrastructure;
+﻿using SnakeApp.Enams;
+using SnakeApp.Infrastructure;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Snake.Models
+namespace SnakeApp.Models
 {
-    //TODO: выделить нужные интерфейсы для каждого класса, где это необходимо.
-    public class Point : IDrawable
+    public class Point : IPoint
     {
         public int X { get; private set; }
         public int Y { get; private set; }
 
-        public char Symbol { get; private set; }
+        public string Symbol { get; private set; }
 
-        public Point (int x, int y, char symbol)
+        public Point(int x, int y, string symbol)
         {
             X = x;
             Y = y;
             Symbol = symbol;
-        }        
+        }
 
         public void Move(MoveDirection direction, int count)
         {
@@ -41,7 +36,7 @@ namespace Snake.Models
 
                 case MoveDirection.Left:
                     X -= count;
-                    break;  
+                    break;
             }
         }
 
@@ -53,14 +48,18 @@ namespace Snake.Models
 
         public void Delete()
         {
-            Symbol = ' ';
+            Symbol = " ";
             Draw();
         }
 
-        public bool IsHit(Point point)
+        public bool IsHit(IPoint point)
         {
             return X == point.X && Y == point.Y;
         }
 
+        public object Clone()
+        {
+            return new Point(X, Y, Symbol);
+        }
     }
 }

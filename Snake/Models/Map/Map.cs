@@ -1,13 +1,13 @@
-﻿using Snake.Infrastructure;
+﻿using SnakeApp.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Snake.Models.Map
+namespace SnakeApp.Models.Map
 {
-    public class Map : IDrawable
+    public class Map : IMap
     {
         public string Name { get; private set; }
         public int Height { get; private set; }
@@ -24,7 +24,7 @@ namespace Snake.Models.Map
             Width = width;
             Walls = walls;
 
-            _foodGenerator = new FoodGenerator(Height, Width, '*');
+            _foodGenerator = new FoodGenerator(Height, Width, "O");
         }
 
         public void Draw()
