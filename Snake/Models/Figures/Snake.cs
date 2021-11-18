@@ -23,7 +23,9 @@ namespace SnakeApp.Models.Figures
 
             Init(length);
         }
-
+        /// <summary>
+        /// инициализация змейки
+        /// </summary>        
         private void Init(int length)
         {
             _points.Add(_tail);
@@ -35,10 +37,18 @@ namespace SnakeApp.Models.Figures
                 _points.Add(point);
             }
         }
-
-        private void Move()
+        /// <summary>
+        /// Движение змейки
+        /// </summary>        
+        private void Move(MoveDirection _direction)
         {
+            //Что бы двигаться нам нужно удалить последний поинт хвоста и добавить поинт вначало в листе.
+            
+            _points.RemoveAt(0);
 
+            IPoint point = (IPoint)_points.Last().Clone();
+            point.Move(_direction, 1);
+            _points.Add(point);
         }
     }
 }

@@ -11,6 +11,9 @@ namespace SnakeApp.Models.Map
 {
     public class MapGenerator : IMapGenerator
     {
+        /// <summary>
+        /// Генерирует карту по типу (шаблону)
+        /// </summary>        
         public Map Generate(MapType type, int height, int width)
         {
             switch (type)
@@ -23,6 +26,9 @@ namespace SnakeApp.Models.Map
             }
         }
 
+        /// <summary>
+        /// Генерирует карту типа Box
+        /// </summary>        
         private Map GenerateBox(int height, int width)
         {   
             var upWall = new Line(0, 0, width, "#", LineType.Horizontal);

@@ -18,6 +18,9 @@ namespace SnakeApp.Models
             Symbol = symbol;
         }
 
+        /// <summary>
+        /// Двигает указатель
+        /// </summary>
         public void Move(MoveDirection direction, int count)
         {
             switch (direction)
@@ -40,12 +43,18 @@ namespace SnakeApp.Models
             }
         }
 
+        /// <summary>
+        /// Отрисовывание точек(символа)
+        /// </summary>
         public void Draw()
         {
             Console.SetCursorPosition(X, Y);
             Console.Write(Symbol);
         }
 
+        /// <summary>
+        /// Затирание точки(символа)
+        /// </summary>
         public void Delete()
         {
             Symbol = " ";

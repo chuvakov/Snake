@@ -34,7 +34,9 @@ namespace SnakeApp.Models.Map
                 wall.Draw();
             }
         }
-
+        /// <summary>
+        /// Рисует сгенерированную еду
+        /// </summary>
         public void GenerateFood()
         {
             Point point = _foodGenerator.Generate();

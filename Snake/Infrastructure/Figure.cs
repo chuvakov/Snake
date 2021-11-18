@@ -15,7 +15,9 @@ namespace SnakeApp.Infrastructure
         {
             _points = new List<IPoint>();
         }
-        
+        /// <summary>
+        /// отрисовать фигуру
+        /// </summary>
         public void Draw()
         {            
             foreach (var point in _points)
@@ -23,12 +25,16 @@ namespace SnakeApp.Infrastructure
                 point.Draw();
             }
         }
-
+        /// <summary>
+        /// проверка на соприкосновение точки
+        /// </summary>
         public bool IsHit(IPoint inputPoint)
         {            
             return _points.Any(x => x.IsHit(inputPoint));
         }
-
+        /// <summary>
+        /// проверка на соприкосновение фигуры
+        /// </summary>
         public bool IsHit(Figure figure)
         {
             return _points.Any(x => figure.IsHit(x));

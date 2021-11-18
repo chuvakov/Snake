@@ -14,7 +14,9 @@ namespace SnakeApp.Models.Figures
         {
             InitPoints(x, y, length, symbol, type);
         }
-
+        /// <summary>
+        /// инициализация точек
+        /// </summary>
         private void InitPoints(int x, int y, int length, string symbol, LineType type)
         {
             switch (type)
