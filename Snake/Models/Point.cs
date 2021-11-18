@@ -9,7 +9,7 @@ namespace SnakeApp.Models
         public int X { get; private set; }
         public int Y { get; private set; }
 
-        public string Symbol { get; private set; }
+        public string Symbol { get; set; }
 
         public Point(int x, int y, string symbol)
         {
@@ -60,12 +60,17 @@ namespace SnakeApp.Models
             Symbol = " ";
             Draw();
         }
-
+        /// <summary>
+        /// Проверка соприкосновение точек
+        /// </summary>
         public bool IsHit(IPoint point)
         {
             return X == point.X && Y == point.Y;
         }
-
+        /// <summary>
+        /// Клонирование точки
+        /// </summary>
+        /// <returns></returns>
         public object Clone()
         {
             return new Point(X, Y, Symbol);

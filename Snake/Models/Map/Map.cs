@@ -1,9 +1,6 @@
 ﻿using SnakeApp.Infrastructure;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SnakeApp.Models.Map
 {
@@ -14,8 +11,9 @@ namespace SnakeApp.Models.Map
         public int Width { get; private set; }
         public List<Figure> Walls { get; private set; }
 
-        private Point _food;
-        private readonly FoodGenerator _foodGenerator;        
+        public IPoint Food { get; private set; }
+
+        private readonly FoodGenerator _foodGenerator;
 
         public Map(string name, int height, int width, List<Figure> walls)
         {
@@ -33,16 +31,21 @@ namespace SnakeApp.Models.Map
             {
                 wall.Draw();
             }
+
+            Food.Draw();
         }
+
         /// <summary>
         /// Рисует сгенерированную еду
         /// </summary>
         public void GenerateFood()
         {
-            Point point = _foodGenerator.Generate();
-            point.Draw();
+            Food = _foodGenerator.Generate();             
+        }
 
-            _food = point;
+        public bool IsHit(IFigure figure)
+        {
+            return Walls.Any(x => x.IsHit(figure));
         }
     }
 }

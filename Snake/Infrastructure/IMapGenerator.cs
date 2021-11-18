@@ -5,6 +5,6 @@ namespace SnakeApp.Infrastructure
 {
     public interface IMapGenerator
     {
-        Map Generate(MapType type, int height, int width);
+        IMap Generate(MapType type, int height, int width);
     }
 }

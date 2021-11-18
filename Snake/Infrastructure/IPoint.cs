@@ -8,7 +8,7 @@ namespace SnakeApp.Infrastructure
         int X { get; }
         int Y { get; }
 
-        string Symbol { get; }
+        string Symbol { get; set; }
 
         void Move(MoveDirection direction, int count);
 

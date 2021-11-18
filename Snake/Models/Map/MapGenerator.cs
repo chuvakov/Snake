@@ -14,22 +14,26 @@ namespace SnakeApp.Models.Map
         /// <summary>
         /// Генерирует карту по типу (шаблону)
         /// </summary>        
-        public Map Generate(MapType type, int height, int width)
+        public IMap Generate(MapType type, int height, int width)
         {
+            IMap map = null;
+
             switch (type)
             {
                 case MapType.Box:
-                    return GenerateBox(height, width);                    
+                    map = GenerateBox(height, width);
+                    break;
+            }            
 
-                default:
-                    return null;
-            }
+            map.GenerateFood();
+
+            return map;
         }
 
         /// <summary>
         /// Генерирует карту типа Box
         /// </summary>        
-        private Map GenerateBox(int height, int width)
+        private IMap GenerateBox(int height, int width)
         {   
             var upWall = new Line(0, 0, width, "#", LineType.Horizontal);
             var downWall = new Line(0, height, width, "#", LineType.Horizontal);

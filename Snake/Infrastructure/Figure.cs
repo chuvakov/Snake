@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SnakeApp.Infrastructure
 {
-    public abstract class Figure : IDrawable
+    public abstract class Figure : IFigure
     {
         protected List<IPoint> _points;
 
@@ -35,7 +35,7 @@ namespace SnakeApp.Infrastructure
         /// <summary>
         /// проверка на соприкосновение фигуры
         /// </summary>
-        public bool IsHit(Figure figure)
+        public bool IsHit(IFigure figure)
         {
             return _points.Any(x => figure.IsHit(x));
         }
