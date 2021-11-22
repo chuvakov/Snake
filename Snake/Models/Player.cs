@@ -8,6 +8,14 @@ namespace SnakeApp.Models
 {
     public class Player
     {
+        public string Name { get; set; }
+        public int Point { get; set; }
 
+        public DateTime DateTime { get; set; }
+
+        public Player(string name)
+        {
+            Name = name;
+        }
     }
 }

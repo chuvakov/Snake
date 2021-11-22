@@ -10,10 +10,7 @@ using System.Threading.Tasks;
 namespace SnakeApp.Models.Map
 {
     public class MapGenerator : IMapGenerator
-    {
-        /// <summary>
-        /// Генерирует карту по типу (шаблону)
-        /// </summary>        
+    {               
         public IMap Generate(MapType type, int height, int width)
         {
             IMap map = null;
@@ -29,10 +26,7 @@ namespace SnakeApp.Models.Map
 
             return map;
         }
-
-        /// <summary>
-        /// Генерирует карту типа Box
-        /// </summary>        
+                       
         private IMap GenerateBox(int height, int width)
         {   
             var upWall = new Line(0, 0, width, "#", LineType.Horizontal);
@@ -41,7 +35,7 @@ namespace SnakeApp.Models.Map
             var leftWall = new Line(0, 0, height, "#", LineType.Vertical);
             var rightWall = new Line(width, 0, height, "#", LineType.Vertical);
 
-            var walls = new List<Figure>() { upWall, downWall, leftWall, rightWall };
+            var walls = new List<GameObject>() { upWall, downWall, leftWall, rightWall };
 
             return new Map("Box", height, width, walls);
         }

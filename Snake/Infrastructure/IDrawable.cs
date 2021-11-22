@@ -8,6 +8,9 @@ namespace SnakeApp.Infrastructure
 {
     public interface IDrawable
     {
+        /// <summary>
+        /// Нарисовать
+        /// </summary>
         void Draw();
     }
 }

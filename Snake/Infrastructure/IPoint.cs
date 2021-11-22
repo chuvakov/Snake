@@ -10,10 +10,19 @@ namespace SnakeApp.Infrastructure
 
         string Symbol { get; set; }
 
+        /// <summary>
+        /// Передвинуть точку
+        /// </summary>        
         void Move(MoveDirection direction, int count);
 
+        /// <summary>
+        /// Затереть(удалить) точку
+        /// </summary>
         void Delete();
 
+        /// <summary>
+        /// Соприкосновение точки
+        /// </summary>        
         bool IsHit(IPoint point);
 
     }

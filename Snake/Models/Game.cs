@@ -14,12 +14,15 @@ namespace SnakeApp.Models
     public class Game
     {
         private readonly IMapGenerator _mapGenerator;
+        private readonly Menu _menu;
+
         private IMap _map;
-        private ISnake _snake;
+        private ISnake _snake;        
 
         public Game()
         {
             _mapGenerator = new MapGenerator();
+            _menu = new Menu();
         }
 
         public void Play()
@@ -65,6 +68,12 @@ namespace SnakeApp.Models
         {
             _map = _mapGenerator.Generate(MapType.Box, 30, 90);
             _map.Draw();            
+        }
+
+        public void Start()
+        {
+            _menu.Print();
+            _menu.ScanMenuItem();
         }
     }
 }

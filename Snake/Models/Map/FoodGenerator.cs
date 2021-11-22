@@ -17,9 +17,7 @@ namespace SnakeApp.Models.Map
             _mapWidth = mapWidth;
             _symbol = symbol;
         }
-        /// <summary>
-        /// Гкнкрирует рандомно еду
-        /// </summary>       
+              
         public Point Generate()
         {
             int x = _random.Next(2, _mapWidth - 2);

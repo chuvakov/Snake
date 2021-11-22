@@ -46,9 +46,9 @@
     <Compile Include="Enams\LineType.cs" />
     <Compile Include="Enams\MapType.cs" />
     <Compile Include="Enams\MoveDirection.cs" />
-    <Compile Include="Infrastructure\Figure.cs" />
+    <Compile Include="Infrastructure\GameObject.cs" />
     <Compile Include="Infrastructure\IDrawable.cs" />
-    <Compile Include="Infrastructure\IFigure.cs" />
+    <Compile Include="Infrastructure\IGameObject.cs" />
     <Compile Include="Infrastructure\IFoodGenerator.cs" />
     <Compile Include="Infrastructure\IMap.cs" />
     <Compile Include="Infrastructure\IMapGenerator.cs" />
@@ -57,9 +57,11 @@
     <Compile Include="Models\Figures\Line.cs" />
     <Compile Include="Models\Figures\Snake.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\LeaderBoard.cs" />
     <Compile Include="Models\Map\FoodGenerator.cs" />
     <Compile Include="Models\Map\Map.cs" />
     <Compile Include="Models\Map\MapGenerator.cs" />
+    <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\Player.cs" />
     <Compile Include="Models\Point.cs" />
     <Compile Include="Program.cs" />

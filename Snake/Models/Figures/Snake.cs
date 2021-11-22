@@ -5,9 +5,8 @@ using System.Linq;
 
 namespace SnakeApp.Models.Figures
 {
-    //TODO: везде в методах ИНТЕРФЕЙСОВ добавить комменты, у всех публичных методов классов удалить (///);
-    //Запрогать класс игрока (имя, очки), реализовать набор очков;
-    public class Snake : Figure, ISnake
+    //TODO: Запрограмировать изменение НИКА.
+    public class Snake : GameObject, ISnake
     {
         private IPoint _head;
         private IPoint _tail;
@@ -21,10 +20,7 @@ namespace SnakeApp.Models.Figures
 
             Init(length);
         }
-
-        /// <summary>
-        /// Инициализация змейки
-        /// </summary>        
+                       
         private void Init(int length)
         {
             _points.Add(_tail);
@@ -38,10 +34,7 @@ namespace SnakeApp.Models.Figures
 
             _head = _points.Last();
         }
-
-        /// <summary>
-        /// Движение змейки
-        /// </summary>        
+                       
         public void Move()
         {
             DeleteTail();
@@ -49,20 +42,14 @@ namespace SnakeApp.Models.Figures
 
             _head.Draw();
         }
-
-        /// <summary>
-        /// Добавление головы
-        /// </summary>        
+                       
         private void AddHead()
         {
             _head = (IPoint)_points.Last().Clone();
             _head.Move(_direction, 1);
             _points.Add(_head);
         }
-
-        /// <summary>
-        /// Удаление хвоста
-        /// </summary>
+                
         private void DeleteTail()
         {
             _points.Remove(_tail);
@@ -114,10 +101,7 @@ namespace SnakeApp.Models.Figures
 
             return IsHit(nextHead);
         }
-
-        /// <summary>
-        /// Получаем следующую голову
-        /// </summary>        
+                       
         private IPoint GetNextHead()
         {
             IPoint nextHead = (IPoint)_head.Clone();

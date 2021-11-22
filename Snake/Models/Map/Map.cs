@@ -9,13 +9,13 @@ namespace SnakeApp.Models.Map
         public string Name { get; private set; }
         public int Height { get; private set; }
         public int Width { get; private set; }
-        public List<Figure> Walls { get; private set; }
+        public List<GameObject> Walls { get; private set; }
 
         public IPoint Food { get; private set; }
 
         private readonly FoodGenerator _foodGenerator;
 
-        public Map(string name, int height, int width, List<Figure> walls)
+        public Map(string name, int height, int width, List<GameObject> walls)
         {
             Name = name;
             Height = height;
@@ -34,16 +34,13 @@ namespace SnakeApp.Models.Map
 
             Food.Draw();
         }
-
-        /// <summary>
-        /// Рисует сгенерированную еду
-        /// </summary>
+                
         public void GenerateFood()
         {
             Food = _foodGenerator.Generate();             
         }
 
-        public bool IsHit(IFigure figure)
+        public bool IsHit(IGameObject figure)
         {
             return Walls.Any(x => x.IsHit(figure));
         }

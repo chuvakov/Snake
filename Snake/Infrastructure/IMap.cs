@@ -4,8 +4,14 @@
     {
         IPoint Food { get; }
 
-        bool IsHit(IFigure figure);
+        /// <summary>
+        /// Соприкосновение с картой
+        /// </summary>        
+        bool IsHit(IGameObject figure);
 
+        /// <summary>
+        /// Сгенерировать еду
+        /// </summary>
         void GenerateFood();
     }
 }

@@ -17,10 +17,7 @@ namespace SnakeApp.Models
             Y = y;
             Symbol = symbol;
         }
-
-        /// <summary>
-        /// Двигает указатель
-        /// </summary>
+                
         public void Move(MoveDirection direction, int count)
         {
             switch (direction)
@@ -42,35 +39,24 @@ namespace SnakeApp.Models
                     break;
             }
         }
-
-        /// <summary>
-        /// Отрисовывание точек(символа)
-        /// </summary>
+                
         public void Draw()
         {
             Console.SetCursorPosition(X, Y);
             Console.Write(Symbol);
         }
-
-        /// <summary>
-        /// Затирание точки(символа)
-        /// </summary>
+                
         public void Delete()
         {
             Symbol = " ";
             Draw();
         }
-        /// <summary>
-        /// Проверка соприкосновение точек
-        /// </summary>
+        
         public bool IsHit(IPoint point)
         {
             return X == point.X && Y == point.Y;
         }
-        /// <summary>
-        /// Клонирование точки
-        /// </summary>
-        /// <returns></returns>
+        
         public object Clone()
         {
             return new Point(X, Y, Symbol);

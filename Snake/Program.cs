@@ -12,8 +12,11 @@ namespace SnakeApp
     {
         static void Main(string[] args)
         {
+            LeaderBoard leaderBoard = new LeaderBoard();            
+
             Game game = new Game();
-            game.Play();
+            //game.Play();
+            game.Start();
 
             Console.ReadKey();
         }
