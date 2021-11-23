@@ -11,11 +11,14 @@ namespace SnakeApp.Models
 
         public string Symbol { get; set; }
 
-        public Point(int x, int y, string symbol)
+        public ConsoleColor Color { get; set; }
+
+        public Point(int x, int y, string symbol, ConsoleColor color)
         {
             X = x;
             Y = y;
             Symbol = symbol;
+            Color = color;
         }
                 
         public void Move(MoveDirection direction, int count)
@@ -42,8 +45,12 @@ namespace SnakeApp.Models
                 
         public void Draw()
         {
+            Console.ForegroundColor = Color;
+
             Console.SetCursorPosition(X, Y);
             Console.Write(Symbol);
+
+            Console.ResetColor();
         }
                 
         public void Delete()
@@ -59,7 +66,7 @@ namespace SnakeApp.Models
         
         public object Clone()
         {
-            return new Point(X, Y, Symbol);
+            return new Point(X, Y, Symbol, Color);
         }
     }
 }

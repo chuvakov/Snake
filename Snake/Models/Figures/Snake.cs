@@ -14,6 +14,7 @@ namespace SnakeApp.Models.Figures
         private MoveDirection _direction;
 
         public Snake(IPoint tail, int length, MoveDirection direction)
+            : base(ConsoleColor.Green)
         {
             _tail = tail;
             _direction = direction;
@@ -40,7 +41,9 @@ namespace SnakeApp.Models.Figures
             DeleteTail();
             AddHead();
 
+            Console.ForegroundColor = _color;
             _head.Draw();
+            Console.ResetColor();
         }
                        
         private void AddHead()

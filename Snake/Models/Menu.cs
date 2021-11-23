@@ -29,18 +29,18 @@ namespace SnakeApp.Models
             Console.SetWindowSize(61, 30);
             Console.Clear();
 
-            var upWall = new Line(0, 0, width+1, "-", LineType.Horizontal);
-            var downWall = new Line(0, height, width+1, "-", LineType.Horizontal);
+            var upWall = new Line(0, 0, width+1, "-", LineType.Horizontal, ConsoleColor.Yellow);
+            var downWall = new Line(0, height, width+1, "-", LineType.Horizontal, ConsoleColor.Yellow);
 
-            var leftWall = new Line(0, 1, height-1, "|", LineType.Vertical);
-            var rightWall = new Line(width, 1, height-1, "|", LineType.Vertical);
+            var leftWall = new Line(0, 1, height-1, "|", LineType.Vertical, ConsoleColor.Yellow);
+            var rightWall = new Line(width, 1, height-1, "|", LineType.Vertical, ConsoleColor.Yellow);
 
             upWall.Draw();
             downWall.Draw();
             leftWall.Draw();
             rightWall.Draw();
 
-            var titleDivider = new Line(1, 3, width-1, "-", LineType.Horizontal);
+            var titleDivider = new Line(1, 3, width-1, "-", LineType.Horizontal, ConsoleColor.Yellow);
             titleDivider.Draw();
 
             Console.SetCursorPosition(24, 1);
@@ -84,11 +84,11 @@ namespace SnakeApp.Models
             int y = (num - 1) * buttonHeight + startButtonY;
             int x = 5;
 
-            var upWall = new Line(x, y, butonWidth + 1, "-", LineType.Horizontal);
-            var downWall = new Line(x, y + buttonHeight, butonWidth + 1, "-", LineType.Horizontal);
+            var upWall = new Line(x, y, butonWidth + 1, "-", LineType.Horizontal, ConsoleColor.DarkYellow);
+            var downWall = new Line(x, y + buttonHeight, butonWidth + 1, "-", LineType.Horizontal, ConsoleColor.DarkYellow);
 
-            var leftWall = new Line(x, y + 1, buttonHeight - 1, "|", LineType.Vertical);
-            var rightWall = new Line(x + butonWidth, y + 1, buttonHeight - 1, "|", LineType.Vertical);
+            var leftWall = new Line(x, y + 1, buttonHeight - 1, "|", LineType.Vertical, ConsoleColor.DarkYellow);
+            var rightWall = new Line(x + butonWidth, y + 1, buttonHeight - 1, "|", LineType.Vertical, ConsoleColor.DarkYellow);
 
             upWall.Draw();
             downWall.Draw();

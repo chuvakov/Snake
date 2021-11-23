@@ -11,11 +11,14 @@ namespace SnakeApp.Models.Map
         private readonly string _symbol;
         private readonly Random _random = new Random();
 
-        public FoodGenerator(int mapHeight, int mapWidth, string symbol)
+        private readonly ConsoleColor _color;
+
+        public FoodGenerator(int mapHeight, int mapWidth, string symbol, ConsoleColor color)
         {
             _mapHeight = mapHeight;
             _mapWidth = mapWidth;
             _symbol = symbol;
+            _color = color;
         }
               
         public Point Generate()
@@ -23,7 +26,7 @@ namespace SnakeApp.Models.Map
             int x = _random.Next(2, _mapWidth - 2);
             int y = _random.Next(2, _mapHeight - 2);
 
-            return new Point(x, y, _symbol);
+            return new Point(x, y, _symbol, _color);
         }
     }
 }

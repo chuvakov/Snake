@@ -10,18 +10,24 @@ namespace SnakeApp.Infrastructure
     public abstract class GameObject : IGameObject
     {
         protected List<IPoint> _points;
+        protected ConsoleColor _color;
 
-        public GameObject()
+        public GameObject(ConsoleColor color)
         {
             _points = new List<IPoint>();
+            _color = color;
         }
         
         public void Draw()
-        {            
+        {
+            Console.ForegroundColor = _color;
+
             foreach (var point in _points)
             {
                 point.Draw();
             }
+
+            Console.ResetColor();
         }
         
         public bool IsHit(IPoint inputPoint)

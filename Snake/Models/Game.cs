@@ -34,7 +34,7 @@ namespace SnakeApp.Models
 
         public void Play()
         {
-            InitGame();
+            InitGame();            
 
             while (true)
             {
@@ -62,7 +62,7 @@ namespace SnakeApp.Models
         }
 
         private void InitGame()
-        {
+        { 
             Console.SetWindowSize(91, 31);
             Console.Clear();
 
@@ -74,7 +74,7 @@ namespace SnakeApp.Models
 
         private void InitSnake()
         {
-            var tail = new Point(5, 5, "*");
+            var tail = new Point(5, 5, "*", ConsoleColor.Green);
             _snake = new Snake(tail, 5, MoveDirection.Right);
             _snake.Draw();
         }

@@ -1,4 +1,5 @@
 ﻿using SnakeApp.Infrastructure;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -22,7 +23,7 @@ namespace SnakeApp.Models.Map
             Width = width;
             Walls = walls;
 
-            _foodGenerator = new FoodGenerator(Height, Width, "O");
+            _foodGenerator = new FoodGenerator(Height, Width, "O", ConsoleColor.DarkRed);
         }
 
         public void Draw()
