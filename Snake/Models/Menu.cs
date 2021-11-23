@@ -10,16 +10,25 @@ namespace SnakeApp.Models
 {
     public class Menu
     {
-        private int height = 19;
-        private int width = 56;
+        private int height = 22;
+        private int width = 60;
 
         private int buttonHeight = 2;
-        private int butonWidth = 46;
+        private int butonWidth = 50;
 
-        private int startButtonY = 5;
+        private int startButtonY = 7;
+        private readonly Game _game;
+
+        public Menu(Game game)
+        {
+            _game = game;
+        }
 
         public void Print()
         {
+            Console.SetWindowSize(61, 30);
+            Console.Clear();
+
             var upWall = new Line(0, 0, width+1, "-", LineType.Horizontal);
             var downWall = new Line(0, height, width+1, "-", LineType.Horizontal);
 
@@ -49,7 +58,25 @@ namespace SnakeApp.Models
             int xNick = 5;
 
             Console.SetCursorPosition(xNick, yNick);
-            Console.Write($"Ник: НИК"); //ДЗ, в каком классе хранить и брать игрока.
+            Console.Write($"Ник: {_game.CurentPlayer.Name}");
+
+            Console.SetCursorPosition(xNick, yNick + 1);
+            Console.Write($"Очки: {_game.CurentPlayer.Points}");            
+
+            string selectedMap = "Выбранная карта: ";
+
+            if (_game.SelectedMapType == MapType.Box)
+            {
+                selectedMap += "карта со стенами";
+            }
+            else
+            {
+                selectedMap += "карта без стен";
+            }
+
+            Console.SetCursorPosition(xNick, startButtonY - 2);
+            Console.Write(selectedMap);
+
         }
 
         public void PrintButton(int num, string text)
@@ -92,12 +119,62 @@ namespace SnakeApp.Models
 
             switch (menuItem)
             {
-                //case 4 ДЗ
+                case 1:
+                    _game.Play();
+                    break;
+
+                case 2:
+                    Console.Write("Введите ник:");
+                    string nickname = Console.ReadLine();
+                    _game.ChangePlayerNickname(nickname);
+
+                    break;
+
+                case 3:
+                    SelectMapType();
+                    break;
+
+                case 4:
+                    ShowLeaderBoard();                   
+                    break;
 
                 case 5:
                     Environment.Exit(0);
                     break;                
             }
+        }
+
+        private void SelectMapType()
+        {
+            string maps = 
+                "1. Карта со стенами\n" +
+                "2. Карта без стен";
+
+            Console.WriteLine("Выберете карту из списка ниже:");
+            Console.WriteLine(maps);
+
+            Console.Write("Введите номер карты: ");
+            int numMap = int.Parse(Console.ReadLine());
+
+            switch (numMap)
+            {
+                case 1:
+                    _game.SelectedMapType = MapType.Box;
+                    break;
+
+                case 2:
+                    _game.SelectedMapType = MapType.Empty;
+                    break;
+            }
+
+        }
+
+        private void ShowLeaderBoard()
+        {
+            _game.LeaderBoard.Print();
+
+            Console.Write("\nДля того что бы вернуться в меню, нажмите любую клавишу: ");
+            Console.ReadKey();
         }
     }
 }

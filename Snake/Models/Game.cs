@@ -17,12 +17,19 @@ namespace SnakeApp.Models
         private readonly Menu _menu;
 
         private IMap _map;
-        private ISnake _snake;        
+        private ISnake _snake;
+
+        public Player CurentPlayer { get; private set; }
+        public MapType SelectedMapType { get; set; } = MapType.Box;
+        public LeaderBoard LeaderBoard { get; private set; }
 
         public Game()
         {
             _mapGenerator = new MapGenerator();
-            _menu = new Menu();
+            _menu = new Menu(this);
+
+            CurentPlayer = new Player("Player"); //TODO: Тянуть ник из БД
+            LeaderBoard = new LeaderBoard();    //TODO: Тянуть из БД
         }
 
         public void Play()
@@ -38,6 +45,7 @@ namespace SnakeApp.Models
 
                 if (_snake.EatFood(_map.Food))
                 {
+                    CurentPlayer.Points += 100;
                     _map.GenerateFood();
                 }
 
@@ -49,10 +57,17 @@ namespace SnakeApp.Models
                     _snake.HandleKey(Console.ReadKey().Key);
                 }
             }
+
+            LeaderBoard.UpdatePlayerPoints(CurentPlayer);
         }
 
         private void InitGame()
         {
+            Console.SetWindowSize(91, 31);
+            Console.Clear();
+
+            CurentPlayer.Points = 0;
+
             InitMap();
             InitSnake();
         }
@@ -66,14 +81,22 @@ namespace SnakeApp.Models
 
         private void InitMap()
         {
-            _map = _mapGenerator.Generate(MapType.Box, 30, 90);
+            _map = _mapGenerator.Generate(SelectedMapType, 30, 90);
             _map.Draw();            
         }
 
         public void Start()
+        {    
+            while (true)
+            {
+                _menu.Print();
+                _menu.ScanMenuItem();
+            }
+        }
+
+        public void ChangePlayerNickname(string nickname)
         {
-            _menu.Print();
-            _menu.ScanMenuItem();
+            CurentPlayer.Name = nickname;
         }
     }
 }

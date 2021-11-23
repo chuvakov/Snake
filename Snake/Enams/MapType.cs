@@ -8,6 +8,7 @@ namespace SnakeApp.Enams
 {
     public enum MapType
     {
-        Box
+        Box,
+        Empty //TODO: Запрограмировать карту без стен
     }
 }

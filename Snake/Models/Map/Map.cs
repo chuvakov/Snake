@@ -37,7 +37,8 @@ namespace SnakeApp.Models.Map
                 
         public void GenerateFood()
         {
-            Food = _foodGenerator.Generate();             
+            Food = _foodGenerator.Generate();
+            Food.Draw();
         }
 
         public bool IsHit(IGameObject figure)
