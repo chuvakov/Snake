@@ -4,8 +4,7 @@ using System;
 using System.Linq;
 
 namespace SnakeApp.Models.Figures
-{
-    //TODO: Запрограмировать изменение НИКА.
+{    
     public class Snake : GameObject, ISnake
     {
         private IPoint _head;
@@ -119,6 +118,7 @@ namespace SnakeApp.Models.Figures
             if (nextHead.IsHit(food))
             {
                 food.Symbol = nextHead.Symbol;
+                food.Color = nextHead.Color;
 
                 _points.Add(food);
 

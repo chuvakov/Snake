@@ -14,16 +14,23 @@ namespace SnakeApp.Models.Map
 
         public IPoint Food { get; private set; }
 
+        public int X { get; private set; }
+        public int Y { get; private set; }
+
         private readonly FoodGenerator _foodGenerator;
 
-        public Map(string name, int height, int width, List<GameObject> walls)
+        public Map(string name, int x, int y, int height, int width, List<GameObject> walls)
         {
             Name = name;
+
+            X = x;
+            Y = y;
+
             Height = height;
             Width = width;
             Walls = walls;
 
-            _foodGenerator = new FoodGenerator(Height, Width, "O", ConsoleColor.DarkRed);
+            _foodGenerator = new FoodGenerator(this, "O", ConsoleColor.DarkRed);
         }
 
         public void Draw()

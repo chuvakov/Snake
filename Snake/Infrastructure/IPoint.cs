@@ -8,6 +8,8 @@ namespace SnakeApp.Infrastructure
         int X { get; }
         int Y { get; }
 
+        ConsoleColor Color { get; set; }
+
         string Symbol { get; set; }
 
         /// <summary>

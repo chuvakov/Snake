@@ -57,6 +57,7 @@
     <Compile Include="Models\Figures\Line.cs" />
     <Compile Include="Models\Figures\Snake.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\Hood.cs" />
     <Compile Include="Models\LeaderBoard.cs" />
     <Compile Include="Models\Map\FoodGenerator.cs" />
     <Compile Include="Models\Map\Map.cs" />

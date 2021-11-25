@@ -8,6 +8,6 @@ namespace SnakeApp.Infrastructure
         /// <summary>
         /// Сгенерировать карту
         /// </summary>        
-        IMap Generate(MapType type, int height, int width);
+        IMap Generate(MapType type, int height, int width, int x, int y);        
     }
 }

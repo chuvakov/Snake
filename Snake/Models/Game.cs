@@ -15,18 +15,20 @@ namespace SnakeApp.Models
     {
         private readonly IMapGenerator _mapGenerator;
         private readonly Menu _menu;
+        private readonly Hood _hood;
 
-        private IMap _map;
+        public IMap _map;
         private ISnake _snake;
 
         public Player CurentPlayer { get; private set; }
         public MapType SelectedMapType { get; set; } = MapType.Box;
-        public LeaderBoard LeaderBoard { get; private set; }
+        public LeaderBoard LeaderBoard { get; private set; }              
 
         public Game()
         {
             _mapGenerator = new MapGenerator();
             _menu = new Menu(this);
+            _hood = new Hood(this);
 
             CurentPlayer = new Player("Player"); //TODO: Тянуть ник из БД
             LeaderBoard = new LeaderBoard();    //TODO: Тянуть из БД
@@ -46,6 +48,7 @@ namespace SnakeApp.Models
                 if (_snake.EatFood(_map.Food))
                 {
                     CurentPlayer.Points += 100;
+                    _hood.DrawPoints();
                     _map.GenerateFood();
                 }
 
@@ -63,25 +66,31 @@ namespace SnakeApp.Models
 
         private void InitGame()
         { 
-            Console.SetWindowSize(91, 31);
+            Console.SetWindowSize(111, 43);
             Console.Clear();
 
             CurentPlayer.Points = 0;
-
+                        
             InitMap();
+            InitHood();
             InitSnake();
+        }
+
+        private void InitHood()
+        {            
+            _hood.Draw();
         }
 
         private void InitSnake()
         {
-            var tail = new Point(5, 5, "*", ConsoleColor.Green);
+            var tail = new Point(_map.X + 5, _map.Y + 5, "*", ConsoleColor.Green);
             _snake = new Snake(tail, 5, MoveDirection.Right);
             _snake.Draw();
         }
 
         private void InitMap()
         {
-            _map = _mapGenerator.Generate(SelectedMapType, 30, 90);
+            _map = _mapGenerator.Generate(SelectedMapType, 30, 90, 10, 6);
             _map.Draw();            
         }
 

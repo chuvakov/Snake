@@ -29,6 +29,14 @@ namespace SnakeApp.Infrastructure
 
             Console.ResetColor();
         }
+
+        public void Delete()
+        {
+            foreach (var point in _points)
+            {
+                point.Delete();
+            }
+        }
         
         public bool IsHit(IPoint inputPoint)
         {            
