@@ -58,14 +58,11 @@ namespace SnakeApp.Models
             int xNick = 5;
 
             Console.SetCursorPosition(xNick, yNick);
-            Console.Write($"Ник: {_game.CurentPlayer.Name}");
-
-            Console.SetCursorPosition(xNick, yNick + 1);
-            Console.Write($"Очки: {_game.CurentPlayer.Points}");            
+            Console.Write($"Ник: {_game.CurentPlayer.Name}");                        
 
             string selectedMap = "Выбранная карта: ";
 
-            if (_game.SelectedMapType == MapType.Box)
+            if (_game.Settings.SelectedMapType.Value == MapType.Box)
             {
                 selectedMap += "карта со стенами";
             }
@@ -126,7 +123,9 @@ namespace SnakeApp.Models
                 case 2:
                     Console.Write("Введите ник:");
                     string nickname = Console.ReadLine();
+
                     _game.ChangePlayerNickname(nickname);
+                    _game.Settings.PlayerNick = nickname;
 
                     break;
 
@@ -139,6 +138,7 @@ namespace SnakeApp.Models
                     break;
 
                 case 5:
+                    _game.Save();
                     Environment.Exit(0);
                     break;                
             }
@@ -159,11 +159,11 @@ namespace SnakeApp.Models
             switch (numMap)
             {
                 case 1:
-                    _game.SelectedMapType = MapType.Box;
+                    _game.Settings.SelectedMapType = MapType.Box;
                     break;
 
                 case 2:
-                    _game.SelectedMapType = MapType.Empty;
+                    _game.Settings.SelectedMapType = MapType.Empty;
                     break;
             }
 

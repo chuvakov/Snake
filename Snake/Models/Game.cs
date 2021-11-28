@@ -3,11 +3,9 @@ using SnakeApp.Infrastructure;
 using SnakeApp.Models.Figures;
 using SnakeApp.Models.Map;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.IO;
+using System.Reflection;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace SnakeApp.Models
 {
@@ -21,8 +19,11 @@ namespace SnakeApp.Models
         private ISnake _snake;
 
         public Player CurentPlayer { get; private set; }
-        public MapType SelectedMapType { get; set; } = MapType.Box;
-        public LeaderBoard LeaderBoard { get; private set; }              
+        public LeaderBoard LeaderBoard { get; private set; }
+
+        public GameSettings Settings { get; private set; }
+
+        public DataStorage DataStorage { get; private set; }
 
         public Game()
         {
@@ -30,13 +31,15 @@ namespace SnakeApp.Models
             _menu = new Menu(this);
             _hood = new Hood(this);
 
-            CurentPlayer = new Player("Player"); //TODO: Тянуть ник из БД
-            LeaderBoard = new LeaderBoard();    //TODO: Тянуть из БД
+            string pathToDataStorage = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            DataStorage = new DataStorage(pathToDataStorage);
+
+            InitDataFromStorage();
         }
 
         public void Play()
         {
-            InitGame();            
+            InitGame();
 
             while (true)
             {
@@ -65,19 +68,19 @@ namespace SnakeApp.Models
         }
 
         private void InitGame()
-        { 
+        {
             Console.SetWindowSize(111, 43);
             Console.Clear();
 
             CurentPlayer.Points = 0;
-                        
+
             InitMap();
             InitHood();
             InitSnake();
         }
 
         private void InitHood()
-        {            
+        {
             _hood.Draw();
         }
 
@@ -90,12 +93,12 @@ namespace SnakeApp.Models
 
         private void InitMap()
         {
-            _map = _mapGenerator.Generate(SelectedMapType, 30, 90, 10, 6);
-            _map.Draw();            
+            _map = _mapGenerator.Generate(Settings.SelectedMapType.Value, 30, 90, 10, 6);
+            _map.Draw();
         }
 
         public void Start()
-        {    
+        {
             while (true)
             {
                 _menu.Print();
@@ -103,9 +106,36 @@ namespace SnakeApp.Models
             }
         }
 
+        private void InitDataFromStorage()
+        {
+            Settings = DataStorage.LoadGameSettings();
+            LeaderBoard = DataStorage.LoadLeaderBoard();
+
+            if (Settings == null)
+            {
+                Settings = new GameSettings()
+                {
+                    SelectedMapType = MapType.Box,
+                    PlayerNick = "Player"
+                };
+            }
+
+            if (LeaderBoard == null)
+            {
+                LeaderBoard = new LeaderBoard();
+            }
+
+            CurentPlayer = new Player(Settings.PlayerNick);
+        }
+
         public void ChangePlayerNickname(string nickname)
         {
             CurentPlayer.Name = nickname;
+        }
+
+        public void Save()
+        {
+            DataStorage.Save(LeaderBoard, Settings);
         }
     }
 }

@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,9 +57,11 @@
     <Compile Include="Infrastructure\IMapGenerator.cs" />
     <Compile Include="Infrastructure\IPoint.cs" />
     <Compile Include="Infrastructure\ISnake.cs" />
+    <Compile Include="Models\DataStorage.cs" />
     <Compile Include="Models\Figures\Line.cs" />
     <Compile Include="Models\Figures\Snake.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameSettings.cs" />
     <Compile Include="Models\Hood.cs" />
     <Compile Include="Models\LeaderBoard.cs" />
     <Compile Include="Models\Map\FoodGenerator.cs" />
@@ -70,6 +75,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
