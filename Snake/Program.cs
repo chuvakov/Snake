@@ -1,4 +1,5 @@
 ﻿using SnakeApp.Models;
+using System;
 
 namespace SnakeApp
 {
@@ -6,8 +7,16 @@ namespace SnakeApp
     {
         static void Main(string[] args)
         {
-            Game game = new Game();
-            game.Start();
+            try
+            {
+                Game game = new Game();
+                game.Start();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            
         }
     }
 }

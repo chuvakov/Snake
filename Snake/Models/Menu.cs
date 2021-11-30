@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SnakeApp.Models
@@ -112,36 +113,57 @@ namespace SnakeApp.Models
         {
             Console.SetCursorPosition(0, height + 2);
             Console.Write("Введите пункт меню: ");
-            int menuItem = int.Parse(Console.ReadLine());
 
-            switch (menuItem)
+            try
             {
-                case 1:
-                    _game.Play();
-                    break;
+                int menuItem = int.Parse(Console.ReadLine());
 
-                case 2:
-                    Console.Write("Введите ник:");
-                    string nickname = Console.ReadLine();
+                switch (menuItem)
+                {
+                    case 1:
+                        _game.Play();
+                        break;
 
-                    _game.ChangePlayerNickname(nickname);
-                    _game.Settings.PlayerNick = nickname;
+                    case 2:
+                        Console.Write("Введите ник:");
+                        string nickname = Console.ReadLine();
 
-                    break;
+                        _game.ChangePlayerNickname(nickname);
+                        _game.Settings.PlayerNick = nickname;
 
-                case 3:
-                    SelectMapType();
-                    break;
+                        break;
 
-                case 4:
-                    ShowLeaderBoard();                   
-                    break;
+                    case 3:
+                        SelectMapType();
+                        break;
 
-                case 5:
-                    _game.Save();
-                    Environment.Exit(0);
-                    break;                
+                    case 4:
+                        ShowLeaderBoard();
+                        break;
+
+                    case 5:
+                        _game.Save();
+                        Environment.Exit(0);
+                        break;
+
+                    default:
+                        PrintError("Такого пунка меню не существует, попробуйте снова");
+                        Thread.Sleep(2000);
+                        break;
+                }
             }
+            catch (Exception)
+            {
+                PrintError("Такого пунка меню не существует, попробуйте снова");
+                Thread.Sleep(2000);
+            }            
+        }
+
+        private void PrintError(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.WriteLine(message);
+            Console.ResetColor();
         }
 
         private void SelectMapType()
